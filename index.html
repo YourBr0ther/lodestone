@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Lodestone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+</head>
+<body>
+  <!-- Animated background layers -->
+  <div class="bg-layer bg-nebula"></div>
+  <div class="bg-layer bg-stars"></div>
+  <div class="bg-layer bg-runes"></div>
+  <canvas id="particles" class="bg-layer"></canvas>
+
+  <!-- SVG Defs for shared gradients/filters -->
+  <svg style="position:absolute;width:0;height:0">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="runeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#4af;stop-opacity:0.8"/>
+        <stop offset="50%" style="stop-color:#a6f;stop-opacity:0.6"/>
+        <stop offset="100%" style="stop-color:#4af;stop-opacity:0.8"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="lodestone-icon">
+        <svg viewBox="0 0 80 80" class="compass-svg">
+          <defs>
+            <radialGradient id="stoneGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" style="stop-color:#7df;stop-opacity:0.4"/>
+              <stop offset="70%" style="stop-color:#48f;stop-opacity:0.1"/>
+              <stop offset="100%" style="stop-color:#126;stop-opacity:0"/>
+            </radialGradient>
+            <filter id="iconGlow">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <circle cx="40" cy="40" r="38" fill="url(#stoneGlow)" stroke="#4af" stroke-width="0.5" filter="url(#iconGlow)"/>
+          <circle cx="40" cy="40" r="28" fill="none" stroke="#4af" stroke-width="0.3" opacity="0.5"/>
+          <!-- Compass points -->
+          <polygon points="40,8 43,35 40,32 37,35" fill="#4af" opacity="0.9" filter="url(#iconGlow)"/>
+          <polygon points="40,72 43,45 40,48 37,45" fill="#a6f" opacity="0.7"/>
+          <polygon points="8,40 35,37 32,40 35,43" fill="#a6f" opacity="0.5"/>
+          <polygon points="72,40 45,37 48,40 45,43" fill="#a6f" opacity="0.5"/>
+          <!-- Center stone -->
+          <circle cx="40" cy="40" r="5" fill="#4af" filter="url(#iconGlow)" class="center-stone"/>
+          <!-- Orbiting rune marks -->
+          <circle cx="40" cy="12" r="1.5" fill="#7df" class="rune-dot rune-dot-1"/>
+          <circle cx="68" cy="40" r="1.5" fill="#7df" class="rune-dot rune-dot-2"/>
+          <circle cx="40" cy="68" r="1.5" fill="#7df" class="rune-dot rune-dot-3"/>
+          <circle cx="12" cy="40" r="1.5" fill="#7df" class="rune-dot rune-dot-4"/>
+        </svg>
+      </div>
+      <h1 class="title">Lodestone</h1>
+      <p class="subtitle">Arcane Navigation Hub</p>
+      <div class="title-underline"></div>
+    </header>
+
+    <!-- Rune divider -->
+    <div class="rune-divider">
+      <span class="rune">&#5765;</span>
+      <span class="rune">&#5791;</span>
+      <span class="rune">&#5794;</span>
+      <span class="rune">&#5765;</span>
+    </div>
+
+    <!-- App Grid -->
+    <section class="app-grid">
+      <a href="https://deshops.hiddencasa.com" class="app-tile" data-app="deshops">
+        <div class="tile-glow"></div>
+        <div class="tile-rune-border">
+          <svg viewBox="0 0 120 120" class="rune-border-svg">
+            <rect x="5" y="5" width="110" height="110" rx="16" fill="none" stroke="url(#runeGrad)" stroke-width="0.8" stroke-dasharray="4 8" class="rune-dash"/>
+          </svg>
+        </div>
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="shopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#f8d56b"/>
+                  <stop offset="100%" style="stop-color:#f0a030"/>
+                </linearGradient>
+                <filter id="shopGlow">
+                  <feGaussianBlur stdDeviation="2" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Potion bottle / shop artifact -->
+              <path d="M26,18 L38,18 L38,24 L44,34 L44,50 C44,54 40,56 32,56 C24,56 20,54 20,50 L20,34 L26,24 Z"
+                    fill="none" stroke="url(#shopGrad)" stroke-width="1.5" filter="url(#shopGlow)"/>
+              <!-- Magical contents -->
+              <path d="M22,38 Q28,34 32,38 Q36,42 42,38 L42,50 C42,53 38,54 32,54 C26,54 22,53 22,50 Z"
+                    fill="url(#shopGrad)" opacity="0.3"/>
+              <!-- Sparkles -->
+              <circle cx="28" cy="42" r="1" fill="#f8d56b" class="sparkle s1"/>
+              <circle cx="35" cy="46" r="1.2" fill="#f8d56b" class="sparkle s2"/>
+              <circle cx="31" cy="38" r="0.8" fill="#f8d56b" class="sparkle s3"/>
+              <!-- Coins floating -->
+              <ellipse cx="16" cy="28" rx="5" ry="3" fill="none" stroke="#f8d56b" stroke-width="1" opacity="0.6" class="float-coin c1"/>
+              <ellipse cx="48" cy="22" rx="4" ry="2.5" fill="none" stroke="#f8d56b" stroke-width="1" opacity="0.5" class="float-coin c2"/>
+              <!-- Gold symbol on bottle -->
+              <text x="32" y="48" text-anchor="middle" fill="#f8d56b" font-size="8" font-family="Cinzel Decorative" opacity="0.8">$</text>
+            </svg>
+          </div>
+          <span class="tile-label">DeShops</span>
+          <span class="tile-desc">Arcane Bazaar</span>
+        </div>
+        <div class="tile-particles"></div>
+      </a>
+
+      <a href="https://cartowl.hiddencasa.com" class="app-tile" data-app="cartowl">
+        <div class="tile-glow"></div>
+        <div class="tile-rune-border">
+          <svg viewBox="0 0 120 120" class="rune-border-svg">
+            <rect x="5" y="5" width="110" height="110" rx="16" fill="none" stroke="url(#runeGrad)" stroke-width="0.8" stroke-dasharray="4 8" class="rune-dash"/>
+          </svg>
+        </div>
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#6be8f8"/>
+                  <stop offset="100%" style="stop-color:#3090f0"/>
+                </linearGradient>
+                <filter id="mapGlow">
+                  <feGaussianBlur stdDeviation="2" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Scroll/Map -->
+              <path d="M14,16 C14,12 18,12 18,16 L18,48 C18,52 14,52 14,48 Z" fill="none" stroke="url(#mapGrad)" stroke-width="1.2" filter="url(#mapGlow)"/>
+              <path d="M50,16 C50,12 46,12 46,16 L46,48 C46,52 50,52 50,48 Z" fill="none" stroke="url(#mapGrad)" stroke-width="1.2" filter="url(#mapGlow)"/>
+              <rect x="18" y="14" width="28" height="36" fill="none" stroke="url(#mapGrad)" stroke-width="0.8" opacity="0.6"/>
+              <!-- Map lines -->
+              <path d="M22,22 Q28,28 34,22 Q40,16 44,24" fill="none" stroke="url(#mapGrad)" stroke-width="0.6" opacity="0.5"/>
+              <path d="M22,30 L30,30 M34,30 L44,30" fill="none" stroke="url(#mapGrad)" stroke-width="0.4" opacity="0.3"/>
+              <path d="M22,36 Q32,42 44,36" fill="none" stroke="url(#mapGrad)" stroke-width="0.6" opacity="0.5"/>
+              <!-- Location pin with eye (owl reference) -->
+              <path d="M32,26 C28,26 26,30 26,33 C26,38 32,44 32,44 C32,44 38,38 38,33 C38,30 36,26 32,26 Z"
+                    fill="url(#mapGrad)" opacity="0.25"/>
+              <circle cx="32" cy="32" r="3.5" fill="none" stroke="#6be8f8" stroke-width="1" filter="url(#mapGlow)"/>
+              <circle cx="32" cy="32" r="1.5" fill="#6be8f8" class="owl-eye"/>
+              <!-- Compass rose small -->
+              <polygon points="52,54 54,60 52,58 50,60" fill="#6be8f8" opacity="0.6" class="mini-compass"/>
+            </svg>
+          </div>
+          <span class="tile-label">CartOwl</span>
+          <span class="tile-desc">Realm Cartography</span>
+        </div>
+        <div class="tile-particles"></div>
+      </a>
+    </section>
+
+    <!-- Bottom rune strip -->
+    <footer class="footer">
+      <div class="rune-divider footer-runes">
+        <span class="rune">&#5765;</span>
+        <span class="rune">&#5794;</span>
+        <span class="rune">&#5765;</span>
+      </div>
+      <p class="footer-text">Seek and you shall find</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

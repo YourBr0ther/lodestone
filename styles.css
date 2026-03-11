@@ -1,0 +1,466 @@
+/* ═══════════════════════════════════════════════════
+   LODESTONE — Arcane Navigation Hub
+   Fantasy Arcane UI Theme
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --void: #080812;
+  --abyss: #0c0c1e;
+  --deep: #10102a;
+  --arcane-blue: #4a99ff;
+  --arcane-cyan: #6be8f8;
+  --arcane-violet: #a66aff;
+  --arcane-gold: #f8d56b;
+  --rune-glow: rgba(106, 170, 255, 0.6);
+  --text-primary: #c8d8f0;
+  --text-dim: #6878a0;
+  --tile-bg: rgba(16, 18, 42, 0.85);
+  --tile-border: rgba(74, 153, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Cormorant Garamond', serif;
+  background: var(--void);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Background Layers ─── */
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bg-nebula {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74, 50, 160, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(30, 80, 180, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(8, 8, 30, 1) 0%, var(--void) 100%);
+}
+
+.bg-stars {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(200, 220, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(200, 220, 255, 0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 15%, rgba(200, 220, 255, 0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 75%, rgba(200, 220, 255, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 40%, rgba(200, 220, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 85%, rgba(200, 220, 255, 0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 50%, rgba(200, 220, 255, 0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 10%, rgba(200, 220, 255, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 45%, rgba(200, 220, 255, 0.2) 0%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 25% 90%, rgba(200, 220, 255, 0.35) 0%, transparent 100%);
+  animation: starTwinkle 8s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.bg-runes {
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='20' y='40' font-size='24' fill='%234a99ff' font-family='serif'%3E%E1%9A%B1%3C/text%3E%3Ctext x='100' y='90' font-size='20' fill='%234a99ff' font-family='serif'%3E%E1%9A%A0%3C/text%3E%3Ctext x='50' y='150' font-size='22' fill='%234a99ff' font-family='serif'%3E%E1%9A%B3%3C/text%3E%3Ctext x='140' y='170' font-size='18' fill='%234a99ff' font-family='serif'%3E%E1%9A%A8%3C/text%3E%3C/svg%3E");
+  animation: runeFloat 30s linear infinite;
+}
+
+@keyframes runeFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-200px); }
+}
+
+#particles {
+  z-index: 1;
+}
+
+
+/* ─── App Container ─── */
+
+.app-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeInDown 1.2s ease-out;
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.lodestone-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.25rem;
+}
+
+.compass-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 12px rgba(74, 153, 255, 0.4));
+  animation: compassSpin 60s linear infinite;
+}
+
+@keyframes compassSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.center-stone {
+  animation: stonePulse 3s ease-in-out infinite;
+}
+
+@keyframes stonePulse {
+  0%, 100% { opacity: 0.7; r: 5; }
+  50% { opacity: 1; r: 6; }
+}
+
+.rune-dot {
+  animation: runeOrbit 8s ease-in-out infinite;
+}
+.rune-dot-2 { animation-delay: 2s; }
+.rune-dot-3 { animation-delay: 4s; }
+.rune-dot-4 { animation-delay: 6s; }
+
+@keyframes runeOrbit {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, var(--arcane-cyan) 0%, var(--arcane-blue) 40%, var(--arcane-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(74, 153, 255, 0.3));
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.35em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.title-underline {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--arcane-blue), transparent);
+  margin-top: 0.25rem;
+  animation: underlineGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes underlineGlow {
+  0% { opacity: 0.3; width: 100px; }
+  100% { opacity: 0.8; width: 140px; }
+}
+
+/* ─── Rune Dividers ─── */
+
+.rune-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeIn 1.5s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.rune {
+  font-size: 1rem;
+  color: var(--arcane-blue);
+  opacity: 0.4;
+  animation: runePulse 5s ease-in-out infinite;
+  text-shadow: 0 0 8px var(--rune-glow);
+}
+
+.rune:nth-child(2) { animation-delay: 1.25s; }
+.rune:nth-child(3) { animation-delay: 2.5s; }
+.rune:nth-child(4) { animation-delay: 3.75s; }
+
+@keyframes runePulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+}
+
+/* ─── App Grid ─── */
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 340px;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.app-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 18px;
+  background: var(--tile-bg);
+  border: 1px solid var(--tile-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              border-color 0.3s ease;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-tile:hover,
+.app-tile:active {
+  transform: scale(1.05);
+  border-color: rgba(74, 153, 255, 0.4);
+}
+
+/* Tile glow effect */
+.tile-glow {
+  position: absolute;
+  inset: -50%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+[data-app="deshops"] .tile-glow {
+  background: radial-gradient(circle, rgba(248, 213, 107, 0.15) 0%, transparent 70%);
+}
+
+[data-app="cartowl"] .tile-glow {
+  background: radial-gradient(circle, rgba(107, 232, 248, 0.15) 0%, transparent 70%);
+}
+
+.app-tile:hover .tile-glow {
+  opacity: 1;
+}
+
+/* Rune border animation */
+.tile-rune-border {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rune-border-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.rune-dash {
+  animation: dashRotate 20s linear infinite;
+  stroke-dashoffset: 0;
+}
+
+@keyframes dashRotate {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+
+/* Tile content */
+.tile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.tile-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.icon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.tile-label {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+}
+
+[data-app="deshops"] .tile-label {
+  color: var(--arcane-gold);
+  text-shadow: 0 0 10px rgba(248, 213, 107, 0.3);
+}
+
+[data-app="cartowl"] .tile-label {
+  color: var(--arcane-cyan);
+  text-shadow: 0 0 10px rgba(107, 232, 248, 0.3);
+}
+
+.tile-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Icon animations */
+.sparkle {
+  animation: sparkleFloat 3s ease-in-out infinite;
+}
+.s1 { animation-delay: 0s; }
+.s2 { animation-delay: 1s; }
+.s3 { animation-delay: 2s; }
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
+.float-coin {
+  animation: coinFloat 4s ease-in-out infinite;
+}
+.c1 { animation-delay: 0s; }
+.c2 { animation-delay: 2s; }
+
+@keyframes coinFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-3px) rotate(10deg); opacity: 0.8; }
+}
+
+.owl-eye {
+  animation: eyePulse 4s ease-in-out infinite;
+}
+
+@keyframes eyePulse {
+  0%, 100% { r: 1.5; opacity: 0.7; }
+  50% { r: 2; opacity: 1; }
+}
+
+.mini-compass {
+  animation: compassBob 5s ease-in-out infinite;
+  transform-origin: 52px 57px;
+}
+
+@keyframes compassBob {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-15deg); }
+}
+
+/* ─── Footer ─── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 1.5s ease-out 0.8s both;
+}
+
+.footer-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-dim);
+  letter-spacing: 0.25em;
+  opacity: 0.5;
+}
+
+/* ─── Touch Ripple Effect ─── */
+
+.app-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(74, 153, 255, 0.2) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.app-tile:active::after {
+  opacity: 1;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 380px) {
+  .title { font-size: 1.8rem; }
+  .app-grid { max-width: 280px; gap: 1rem; }
+  .lodestone-icon { width: 64px; height: 64px; }
+}
+
+@media (min-width: 500px) {
+  .app-grid { max-width: 400px; }
+}
+
+@media (min-height: 750px) {
+  .app-container { gap: 2rem; }
+}
+
+/* ─── Accessibility ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.app-tile:focus-visible {
+  outline: 2px solid var(--arcane-blue);
+  outline-offset: 3px;
+}
