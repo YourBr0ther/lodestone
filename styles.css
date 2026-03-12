@@ -11,6 +11,10 @@
   --arcane-cyan: #6be8f8;
   --arcane-violet: #a66aff;
   --arcane-gold: #f8d56b;
+  --arcane-red: #ff6b6b;
+  --arcane-green: #6bff8a;
+  --arcane-amber: #ffb86b;
+  --arcane-purple: #c8a0ff;
   --rune-glow: rgba(106, 170, 255, 0.6);
   --text-primary: #c8d8f0;
   --text-dim: #6878a0;
@@ -86,7 +90,6 @@ html, body {
   z-index: 1;
 }
 
-
 /* ─── App Container ─── */
 
 .app-container {
@@ -97,10 +100,40 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem 1.5rem;
-  gap: 1.5rem;
+  padding: 1rem 1.5rem 0;
+  gap: 0.75rem;
   overflow: hidden;
+}
+
+/* ─── Arcane Clock ─── */
+
+.arcane-clock {
+  text-align: center;
+  animation: fadeInDown 1s ease-out;
+  flex-shrink: 0;
+}
+
+.clock-time {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  background: linear-gradient(135deg, var(--arcane-cyan) 0%, var(--arcane-blue) 50%, var(--arcane-violet) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 12px rgba(74, 153, 255, 0.25));
+  line-height: 1.2;
+}
+
+.clock-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
 }
 
 /* ─── Header ─── */
@@ -110,8 +143,9 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   animation: fadeInDown 1.2s ease-out;
+  flex-shrink: 0;
 }
 
 @keyframes fadeInDown {
@@ -120,9 +154,9 @@ html, body {
 }
 
 .lodestone-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 0.25rem;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 0.15rem;
 }
 
 .compass-svg {
@@ -160,7 +194,7 @@ html, body {
 
 .title {
   font-family: 'Cinzel Decorative', serif;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 900;
   letter-spacing: 0.2em;
   background: linear-gradient(135deg, var(--arcane-cyan) 0%, var(--arcane-blue) 40%, var(--arcane-violet) 100%);
@@ -173,7 +207,7 @@ html, body {
 
 .subtitle {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 400;
   font-style: italic;
   letter-spacing: 0.35em;
@@ -185,7 +219,7 @@ html, body {
   width: 120px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--arcane-blue), transparent);
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   animation: underlineGlow 4s ease-in-out infinite alternate;
 }
 
@@ -194,46 +228,17 @@ html, body {
   100% { opacity: 0.8; width: 140px; }
 }
 
-/* ─── Rune Dividers ─── */
-
-.rune-divider {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  animation: fadeIn 1.5s ease-out 0.3s both;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.rune {
-  font-size: 1rem;
-  color: var(--arcane-blue);
-  opacity: 0.4;
-  animation: runePulse 5s ease-in-out infinite;
-  text-shadow: 0 0 8px var(--rune-glow);
-}
-
-.rune:nth-child(2) { animation-delay: 1.25s; }
-.rune:nth-child(3) { animation-delay: 2.5s; }
-.rune:nth-child(4) { animation-delay: 3.75s; }
-
-@keyframes runePulse {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.7; }
-}
-
 /* ─── App Grid ─── */
 
 .app-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
   animation: fadeInUp 1s ease-out 0.5s both;
+  flex: 1;
+  align-content: center;
 }
 
 @keyframes fadeInUp {
@@ -257,6 +262,8 @@ html, body {
               border-color 0.3s ease;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .app-tile:hover,
@@ -281,6 +288,10 @@ html, body {
 
 [data-app="cartowl"] .tile-glow {
   background: radial-gradient(circle, rgba(107, 232, 248, 0.15) 0%, transparent 70%);
+}
+
+[data-app="chronicle"] .tile-glow {
+  background: radial-gradient(circle, rgba(200, 160, 255, 0.15) 0%, transparent 70%);
 }
 
 .app-tile:hover .tile-glow {
@@ -314,13 +325,13 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   z-index: 2;
 }
 
 .tile-icon {
-  width: 56px;
-  height: 56px;
+  width: 42px;
+  height: 42px;
 }
 
 .icon-svg {
@@ -330,7 +341,7 @@ html, body {
 
 .tile-label {
   font-family: 'MedievalSharp', cursive;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
   letter-spacing: 0.08em;
 }
 
@@ -344,13 +355,59 @@ html, body {
   text-shadow: 0 0 10px rgba(107, 232, 248, 0.3);
 }
 
+[data-app="chronicle"] .tile-label {
+  color: var(--arcane-purple);
+  text-shadow: 0 0 10px rgba(200, 160, 255, 0.3);
+}
+
+[data-app="dice"] .tile-label {
+  color: var(--arcane-red);
+  opacity: 0.5;
+}
+
+[data-app="bestiary"] .tile-label {
+  color: var(--arcane-green);
+  opacity: 0.5;
+}
+
+[data-app="tavern"] .tile-label {
+  color: var(--arcane-amber);
+  opacity: 0.5;
+}
+
 .tile-desc {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-style: italic;
   color: var(--text-dim);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+/* Coming Soon tiles */
+.coming-soon {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.coming-soon:hover,
+.coming-soon:active {
+  transform: none;
+  border-color: var(--tile-border);
+}
+
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: rgba(8, 8, 18, 0.3);
+  pointer-events: none;
+}
+
+.coming-soon .tile-desc {
+  color: var(--arcane-violet);
+  opacity: 0.7;
+  font-size: 0.55rem;
 }
 
 /* Icon animations */
@@ -397,23 +454,209 @@ html, body {
   75% { transform: rotate(-15deg); }
 }
 
-/* ─── Footer ─── */
+/* ─── Favorites Dock ─── */
 
-.footer {
+.favorites-dock {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.6rem 1.5rem;
+  flex-shrink: 0;
+  animation: fadeInUp 1s ease-out 0.8s both;
+  width: 100%;
+  max-width: 320px;
+}
+
+.dock-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: rgba(16, 18, 42, 0.7);
+  border: 1px solid rgba(74, 153, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dock-item {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  animation: fadeIn 1.5s ease-out 0.8s both;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: none;
+  border: none;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.footer-text {
+.dock-item:hover {
+  transform: scale(1.15) translateY(-2px);
+}
+
+.dock-icon {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 6px rgba(74, 153, 255, 0.3));
+}
+
+.dock-label {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+[data-app="deshops"] .dock-label { color: var(--arcane-gold); opacity: 0.7; }
+[data-app="chronicle"] .dock-label { color: var(--arcane-purple); opacity: 0.7; }
+[data-app="cartowl"] .dock-label { color: var(--arcane-cyan); opacity: 0.7; }
+
+/* ─── Chronicle Modal ─── */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 4, 12, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: linear-gradient(145deg, rgba(16, 18, 42, 0.95), rgba(12, 12, 30, 0.98));
+  border: 1px solid rgba(200, 160, 255, 0.2);
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 360px;
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 0 40px rgba(200, 160, 255, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-icon {
+  flex-shrink: 0;
+}
+
+.modal-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--arcane-purple);
+  letter-spacing: 0.1em;
+}
+
+.modal-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
   font-style: italic;
   color: var(--text-dim);
-  letter-spacing: 0.25em;
-  opacity: 0.5;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.modal-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  transition: color 0.2s ease, background 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--arcane-purple);
+  background: rgba(200, 160, 255, 0.1);
+}
+
+.modal-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 160, 255, 0.3), transparent);
+  margin: 1rem 0;
+}
+
+.modal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(200, 160, 255, 0.04);
+  border: 1px solid rgba(200, 160, 255, 0.08);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-link:hover {
+  background: rgba(200, 160, 255, 0.1);
+  border-color: rgba(200, 160, 255, 0.25);
+  transform: translateX(4px);
+}
+
+.session-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--arcane-purple);
+  min-width: 2rem;
+}
+
+.session-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.session-arrow {
+  color: var(--arcane-purple);
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.modal-link:hover .session-arrow {
+  opacity: 1;
 }
 
 /* ─── Touch Ripple Effect ─── */
@@ -436,18 +679,22 @@ html, body {
 
 /* ─── Responsive ─── */
 
-@media (max-width: 380px) {
-  .title { font-size: 1.8rem; }
-  .app-grid { max-width: 280px; gap: 1rem; }
-  .lodestone-icon { width: 64px; height: 64px; }
+@media (max-width: 360px) {
+  .title { font-size: 1.6rem; }
+  .clock-time { font-size: 1.8rem; }
+  .app-grid { gap: 0.6rem; }
+  .tile-icon { width: 36px; height: 36px; }
+  .tile-label { font-size: 0.75rem; }
+  .lodestone-icon { width: 48px; height: 48px; }
+  .favorites-dock { gap: 1.5rem; padding: 0.5rem 1rem; }
 }
 
 @media (min-width: 500px) {
-  .app-grid { max-width: 400px; }
+  .app-grid { max-width: 420px; }
 }
 
-@media (min-height: 750px) {
-  .app-container { gap: 2rem; }
+@media (min-height: 800px) {
+  .app-container { gap: 1.25rem; padding-top: 1.5rem; }
 }
 
 /* ─── Accessibility ─── */
@@ -460,7 +707,9 @@ html, body {
   }
 }
 
-.app-tile:focus-visible {
+.app-tile:focus-visible,
+.dock-item:focus-visible,
+.modal-link:focus-visible {
   outline: 2px solid var(--arcane-blue);
   outline-offset: 3px;
 }

@@ -5,11 +5,61 @@
 (function () {
   'use strict';
 
+  // ─── Arcane Clock ───
+  function updateClock() {
+    const now = new Date();
+    const timeEl = document.getElementById('clock-time');
+    const dateEl = document.getElementById('clock-date');
+
+    // Time in 12-hour format
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    timeEl.textContent = `${hours}:${minutes} ${ampm}`;
+
+    // Date
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    const day = days[now.getDay()];
+    const month = months[now.getMonth()];
+    const date = now.getDate();
+    dateEl.textContent = `${day}, ${month} ${date}`;
+  }
+
+  // ─── Chronicle Modal ───
+  function initChronicleModal() {
+    const modal = document.getElementById('chronicle-modal');
+    const btnGrid = document.getElementById('chronicle-btn');
+    const btnDock = document.getElementById('chronicle-dock-btn');
+    const closeBtn = document.getElementById('chronicle-close');
+
+    function openModal() {
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    btnGrid.addEventListener('click', openModal);
+    btnDock.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
   // ─── Particle System ───
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles = [];
-  let animFrame;
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -31,7 +81,6 @@
       this.fadeSpeed = Math.random() * 0.005 + 0.002;
       this.growing = Math.random() > 0.5;
 
-      // Color variation: blue, cyan, violet
       const colors = [
         [74, 153, 255],
         [107, 232, 248],
@@ -65,7 +114,6 @@
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.opacity})`;
       ctx.fill();
 
-      // Glow effect
       if (this.opacity > 0.2) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
@@ -86,13 +134,12 @@
       p.update();
       p.draw();
     });
-    animFrame = requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animateParticles);
   }
 
   // ─── Tile Interactions ───
   function initTileEffects() {
-    document.querySelectorAll('.app-tile').forEach(tile => {
-      // Ripple position tracking
+    document.querySelectorAll('.app-tile:not(.coming-soon)').forEach(tile => {
       tile.addEventListener('pointerdown', (e) => {
         const rect = tile.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -101,7 +148,6 @@
         tile.style.setProperty('--ripple-y', y + '%');
       });
 
-      // Subtle tilt on hover (desktop)
       tile.addEventListener('pointermove', (e) => {
         if (e.pointerType === 'touch') return;
         const rect = tile.getBoundingClientRect();
@@ -122,6 +168,10 @@
     initParticles();
     animateParticles();
     initTileEffects();
+    initChronicleModal();
+
+    updateClock();
+    setInterval(updateClock, 10000);
   }
 
   window.addEventListener('resize', () => {

@@ -33,6 +33,12 @@
   </svg>
 
   <div class="app-container">
+    <!-- Arcane Clock -->
+    <div class="arcane-clock">
+      <div class="clock-time" id="clock-time">00:00</div>
+      <div class="clock-date" id="clock-date">Loading...</div>
+    </div>
+
     <!-- Header -->
     <header class="header">
       <div class="lodestone-icon">
@@ -50,14 +56,11 @@
           </defs>
           <circle cx="40" cy="40" r="38" fill="url(#stoneGlow)" stroke="#4af" stroke-width="0.5" filter="url(#iconGlow)"/>
           <circle cx="40" cy="40" r="28" fill="none" stroke="#4af" stroke-width="0.3" opacity="0.5"/>
-          <!-- Compass points -->
           <polygon points="40,8 43,35 40,32 37,35" fill="#4af" opacity="0.9" filter="url(#iconGlow)"/>
           <polygon points="40,72 43,45 40,48 37,45" fill="#a6f" opacity="0.7"/>
           <polygon points="8,40 35,37 32,40 35,43" fill="#a6f" opacity="0.5"/>
           <polygon points="72,40 45,37 48,40 45,43" fill="#a6f" opacity="0.5"/>
-          <!-- Center stone -->
           <circle cx="40" cy="40" r="5" fill="#4af" filter="url(#iconGlow)" class="center-stone"/>
-          <!-- Orbiting rune marks -->
           <circle cx="40" cy="12" r="1.5" fill="#7df" class="rune-dot rune-dot-1"/>
           <circle cx="68" cy="40" r="1.5" fill="#7df" class="rune-dot rune-dot-2"/>
           <circle cx="40" cy="68" r="1.5" fill="#7df" class="rune-dot rune-dot-3"/>
@@ -69,16 +72,9 @@
       <div class="title-underline"></div>
     </header>
 
-    <!-- Rune divider -->
-    <div class="rune-divider">
-      <span class="rune">&#5765;</span>
-      <span class="rune">&#5791;</span>
-      <span class="rune">&#5794;</span>
-      <span class="rune">&#5765;</span>
-    </div>
-
     <!-- App Grid -->
     <section class="app-grid">
+      <!-- DeShops -->
       <a href="https://deshops.hiddencasa.com" class="app-tile" data-app="deshops">
         <div class="tile-glow"></div>
         <div class="tile-rune-border">
@@ -99,29 +95,22 @@
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
               </defs>
-              <!-- Potion bottle / shop artifact -->
-              <path d="M26,18 L38,18 L38,24 L44,34 L44,50 C44,54 40,56 32,56 C24,56 20,54 20,50 L20,34 L26,24 Z"
-                    fill="none" stroke="url(#shopGrad)" stroke-width="1.5" filter="url(#shopGlow)"/>
-              <!-- Magical contents -->
-              <path d="M22,38 Q28,34 32,38 Q36,42 42,38 L42,50 C42,53 38,54 32,54 C26,54 22,53 22,50 Z"
-                    fill="url(#shopGrad)" opacity="0.3"/>
-              <!-- Sparkles -->
+              <path d="M26,18 L38,18 L38,24 L44,34 L44,50 C44,54 40,56 32,56 C24,56 20,54 20,50 L20,34 L26,24 Z" fill="none" stroke="url(#shopGrad)" stroke-width="1.5" filter="url(#shopGlow)"/>
+              <path d="M22,38 Q28,34 32,38 Q36,42 42,38 L42,50 C42,53 38,54 32,54 C26,54 22,53 22,50 Z" fill="url(#shopGrad)" opacity="0.3"/>
               <circle cx="28" cy="42" r="1" fill="#f8d56b" class="sparkle s1"/>
               <circle cx="35" cy="46" r="1.2" fill="#f8d56b" class="sparkle s2"/>
               <circle cx="31" cy="38" r="0.8" fill="#f8d56b" class="sparkle s3"/>
-              <!-- Coins floating -->
               <ellipse cx="16" cy="28" rx="5" ry="3" fill="none" stroke="#f8d56b" stroke-width="1" opacity="0.6" class="float-coin c1"/>
               <ellipse cx="48" cy="22" rx="4" ry="2.5" fill="none" stroke="#f8d56b" stroke-width="1" opacity="0.5" class="float-coin c2"/>
-              <!-- Gold symbol on bottle -->
               <text x="32" y="48" text-anchor="middle" fill="#f8d56b" font-size="8" font-family="Cinzel Decorative" opacity="0.8">$</text>
             </svg>
           </div>
           <span class="tile-label">DeShops</span>
           <span class="tile-desc">Arcane Bazaar</span>
         </div>
-        <div class="tile-particles"></div>
       </a>
 
+      <!-- CartOwl -->
       <a href="https://cartowl.hiddencasa.com" class="app-tile" data-app="cartowl">
         <div class="tile-glow"></div>
         <div class="tile-rune-border">
@@ -142,39 +131,235 @@
                   <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
               </defs>
-              <!-- Scroll/Map -->
               <path d="M14,16 C14,12 18,12 18,16 L18,48 C18,52 14,52 14,48 Z" fill="none" stroke="url(#mapGrad)" stroke-width="1.2" filter="url(#mapGlow)"/>
               <path d="M50,16 C50,12 46,12 46,16 L46,48 C46,52 50,52 50,48 Z" fill="none" stroke="url(#mapGrad)" stroke-width="1.2" filter="url(#mapGlow)"/>
               <rect x="18" y="14" width="28" height="36" fill="none" stroke="url(#mapGrad)" stroke-width="0.8" opacity="0.6"/>
-              <!-- Map lines -->
               <path d="M22,22 Q28,28 34,22 Q40,16 44,24" fill="none" stroke="url(#mapGrad)" stroke-width="0.6" opacity="0.5"/>
               <path d="M22,30 L30,30 M34,30 L44,30" fill="none" stroke="url(#mapGrad)" stroke-width="0.4" opacity="0.3"/>
               <path d="M22,36 Q32,42 44,36" fill="none" stroke="url(#mapGrad)" stroke-width="0.6" opacity="0.5"/>
-              <!-- Location pin with eye (owl reference) -->
-              <path d="M32,26 C28,26 26,30 26,33 C26,38 32,44 32,44 C32,44 38,38 38,33 C38,30 36,26 32,26 Z"
-                    fill="url(#mapGrad)" opacity="0.25"/>
+              <path d="M32,26 C28,26 26,30 26,33 C26,38 32,44 32,44 C32,44 38,38 38,33 C38,30 36,26 32,26 Z" fill="url(#mapGrad)" opacity="0.25"/>
               <circle cx="32" cy="32" r="3.5" fill="none" stroke="#6be8f8" stroke-width="1" filter="url(#mapGlow)"/>
               <circle cx="32" cy="32" r="1.5" fill="#6be8f8" class="owl-eye"/>
-              <!-- Compass rose small -->
               <polygon points="52,54 54,60 52,58 50,60" fill="#6be8f8" opacity="0.6" class="mini-compass"/>
             </svg>
           </div>
           <span class="tile-label">CartOwl</span>
           <span class="tile-desc">Realm Cartography</span>
         </div>
-        <div class="tile-particles"></div>
       </a>
+
+      <!-- Chronicle -->
+      <button class="app-tile" data-app="chronicle" id="chronicle-btn" type="button">
+        <div class="tile-glow"></div>
+        <div class="tile-rune-border">
+          <svg viewBox="0 0 120 120" class="rune-border-svg">
+            <rect x="5" y="5" width="110" height="110" rx="16" fill="none" stroke="url(#runeGrad)" stroke-width="0.8" stroke-dasharray="4 8" class="rune-dash"/>
+          </svg>
+        </div>
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="chronicleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#c8a0ff"/>
+                  <stop offset="100%" style="stop-color:#8040e0"/>
+                </linearGradient>
+                <filter id="chronicleGlow">
+                  <feGaussianBlur stdDeviation="2" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Open book -->
+              <path d="M12,18 L32,22 L32,52 L12,48 Z" fill="none" stroke="url(#chronicleGrad)" stroke-width="1.2" filter="url(#chronicleGlow)"/>
+              <path d="M52,18 L32,22 L32,52 L52,48 Z" fill="none" stroke="url(#chronicleGrad)" stroke-width="1.2" filter="url(#chronicleGlow)"/>
+              <!-- Book spine -->
+              <line x1="32" y1="22" x2="32" y2="52" stroke="#c8a0ff" stroke-width="0.8" opacity="0.6"/>
+              <!-- Text lines -->
+              <line x1="16" y1="28" x2="28" y2="30" stroke="#c8a0ff" stroke-width="0.5" opacity="0.4"/>
+              <line x1="16" y1="33" x2="28" y2="35" stroke="#c8a0ff" stroke-width="0.5" opacity="0.3"/>
+              <line x1="16" y1="38" x2="26" y2="40" stroke="#c8a0ff" stroke-width="0.5" opacity="0.3"/>
+              <line x1="36" y1="30" x2="48" y2="28" stroke="#c8a0ff" stroke-width="0.5" opacity="0.4"/>
+              <line x1="36" y1="35" x2="48" y2="33" stroke="#c8a0ff" stroke-width="0.5" opacity="0.3"/>
+              <!-- Quill -->
+              <path d="M44,10 L38,28 L40,27 L42,30 L48,12 Z" fill="url(#chronicleGrad)" opacity="0.5" filter="url(#chronicleGlow)"/>
+              <line x1="38" y1="28" x2="36" y2="34" stroke="#c8a0ff" stroke-width="0.6" opacity="0.5"/>
+              <!-- Ink drops -->
+              <circle cx="36" cy="35" r="0.8" fill="#c8a0ff" class="sparkle s1" opacity="0.6"/>
+              <circle cx="34" cy="38" r="0.6" fill="#c8a0ff" class="sparkle s2" opacity="0.4"/>
+            </svg>
+          </div>
+          <span class="tile-label">Chronicle</span>
+          <span class="tile-desc">Quill's Notes</span>
+        </div>
+      </button>
+
+      <!-- Dice Tower (Coming Soon) -->
+      <div class="app-tile coming-soon" data-app="dice">
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="diceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ff6b6b"/>
+                  <stop offset="100%" style="stop-color:#c04040"/>
+                </linearGradient>
+              </defs>
+              <!-- D20 shape -->
+              <polygon points="32,10 50,24 46,46 18,46 14,24" fill="none" stroke="url(#diceGrad)" stroke-width="1.2" opacity="0.5"/>
+              <!-- Inner lines -->
+              <line x1="32" y1="10" x2="32" y2="46" stroke="#ff6b6b" stroke-width="0.5" opacity="0.3"/>
+              <line x1="14" y1="24" x2="46" y2="46" stroke="#ff6b6b" stroke-width="0.5" opacity="0.2"/>
+              <line x1="50" y1="24" x2="18" y2="46" stroke="#ff6b6b" stroke-width="0.5" opacity="0.2"/>
+              <!-- Number -->
+              <text x="32" y="34" text-anchor="middle" fill="#ff6b6b" font-size="12" font-family="Cinzel Decorative" opacity="0.5">20</text>
+            </svg>
+          </div>
+          <span class="tile-label">Dice Tower</span>
+          <span class="tile-desc">Coming Soon</span>
+        </div>
+        <div class="coming-soon-overlay"></div>
+      </div>
+
+      <!-- Bestiary (Coming Soon) -->
+      <div class="app-tile coming-soon" data-app="bestiary">
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="beastGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#6bff8a"/>
+                  <stop offset="100%" style="stop-color:#30a050"/>
+                </linearGradient>
+              </defs>
+              <!-- Dragon eye -->
+              <path d="M12,32 Q32,14 52,32 Q32,50 12,32 Z" fill="none" stroke="url(#beastGrad)" stroke-width="1.2" opacity="0.5"/>
+              <circle cx="32" cy="32" r="8" fill="none" stroke="#6bff8a" stroke-width="0.8" opacity="0.4"/>
+              <!-- Slit pupil -->
+              <ellipse cx="32" cy="32" rx="2.5" ry="7" fill="#6bff8a" opacity="0.3"/>
+              <!-- Scale marks -->
+              <path d="M8,28 Q10,32 8,36" fill="none" stroke="#6bff8a" stroke-width="0.6" opacity="0.3"/>
+              <path d="M56,28 Q54,32 56,36" fill="none" stroke="#6bff8a" stroke-width="0.6" opacity="0.3"/>
+            </svg>
+          </div>
+          <span class="tile-label">Bestiary</span>
+          <span class="tile-desc">Coming Soon</span>
+        </div>
+        <div class="coming-soon-overlay"></div>
+      </div>
+
+      <!-- Tavern Board (Coming Soon) -->
+      <div class="app-tile coming-soon" data-app="tavern">
+        <div class="tile-content">
+          <div class="tile-icon">
+            <svg viewBox="0 0 64 64" class="icon-svg">
+              <defs>
+                <linearGradient id="tavernGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#ffb86b"/>
+                  <stop offset="100%" style="stop-color:#c07830"/>
+                </linearGradient>
+              </defs>
+              <!-- Board -->
+              <rect x="14" y="12" width="36" height="40" rx="2" fill="none" stroke="url(#tavernGrad)" stroke-width="1.2" opacity="0.5"/>
+              <!-- Nails -->
+              <circle cx="18" cy="16" r="1.5" fill="#ffb86b" opacity="0.4"/>
+              <circle cx="46" cy="16" r="1.5" fill="#ffb86b" opacity="0.4"/>
+              <!-- Pinned notes -->
+              <rect x="18" y="20" width="12" height="10" rx="1" fill="none" stroke="#ffb86b" stroke-width="0.6" opacity="0.35" transform="rotate(-3 24 25)"/>
+              <rect x="34" y="22" width="10" height="8" rx="1" fill="none" stroke="#ffb86b" stroke-width="0.6" opacity="0.3" transform="rotate(2 39 26)"/>
+              <rect x="20" y="34" width="14" height="10" rx="1" fill="none" stroke="#ffb86b" stroke-width="0.6" opacity="0.3" transform="rotate(1 27 39)"/>
+              <!-- Pin dots -->
+              <circle cx="24" cy="21" r="1" fill="#ffb86b" opacity="0.5"/>
+              <circle cx="39" cy="23" r="1" fill="#ffb86b" opacity="0.4"/>
+              <circle cx="27" cy="35" r="1" fill="#ffb86b" opacity="0.4"/>
+            </svg>
+          </div>
+          <span class="tile-label">Tavern Board</span>
+          <span class="tile-desc">Coming Soon</span>
+        </div>
+        <div class="coming-soon-overlay"></div>
+      </div>
     </section>
 
-    <!-- Bottom rune strip -->
-    <footer class="footer">
-      <div class="rune-divider footer-runes">
-        <span class="rune">&#5765;</span>
-        <span class="rune">&#5794;</span>
-        <span class="rune">&#5765;</span>
+    <!-- Favorites Dock -->
+    <nav class="favorites-dock">
+      <div class="dock-bg"></div>
+      <a href="https://deshops.hiddencasa.com" class="dock-item" data-app="deshops" title="DeShops">
+        <svg viewBox="0 0 64 64" class="dock-icon">
+          <path d="M26,18 L38,18 L38,24 L44,34 L44,50 C44,54 40,56 32,56 C24,56 20,54 20,50 L20,34 L26,24 Z" fill="none" stroke="#f8d56b" stroke-width="2"/>
+          <path d="M22,38 Q28,34 32,38 Q36,42 42,38 L42,50 C42,53 38,54 32,54 C26,54 22,53 22,50 Z" fill="#f8d56b" opacity="0.3"/>
+        </svg>
+        <span class="dock-label">DeShops</span>
+      </a>
+      <button class="dock-item" data-app="chronicle" id="chronicle-dock-btn" type="button" title="Chronicle">
+        <svg viewBox="0 0 64 64" class="dock-icon">
+          <path d="M12,18 L32,22 L32,52 L12,48 Z" fill="none" stroke="#c8a0ff" stroke-width="2"/>
+          <path d="M52,18 L32,22 L32,52 L52,48 Z" fill="none" stroke="#c8a0ff" stroke-width="2"/>
+          <path d="M44,10 L38,28 L40,27 L42,30 L48,12 Z" fill="#c8a0ff" opacity="0.4"/>
+        </svg>
+        <span class="dock-label">Chronicle</span>
+      </button>
+      <a href="https://cartowl.hiddencasa.com" class="dock-item" data-app="cartowl" title="CartOwl">
+        <svg viewBox="0 0 64 64" class="dock-icon">
+          <path d="M14,16 C14,12 18,12 18,16 L18,48 C18,52 14,52 14,48 Z" fill="none" stroke="#6be8f8" stroke-width="2"/>
+          <path d="M50,16 C50,12 46,12 46,16 L46,48 C46,52 50,52 50,48 Z" fill="none" stroke="#6be8f8" stroke-width="2"/>
+          <rect x="18" y="14" width="28" height="36" fill="none" stroke="#6be8f8" stroke-width="1" opacity="0.6"/>
+          <circle cx="32" cy="32" r="3.5" fill="none" stroke="#6be8f8" stroke-width="1.5"/>
+          <circle cx="32" cy="32" r="1.5" fill="#6be8f8"/>
+        </svg>
+        <span class="dock-label">CartOwl</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Chronicle Modal -->
+  <div class="modal-overlay" id="chronicle-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg viewBox="0 0 64 64" width="32" height="32">
+            <path d="M12,18 L32,22 L32,52 L12,48 Z" fill="none" stroke="#c8a0ff" stroke-width="1.5"/>
+            <path d="M52,18 L32,22 L32,52 L52,48 Z" fill="none" stroke="#c8a0ff" stroke-width="1.5"/>
+            <path d="M44,10 L38,28 L40,27 L42,30 L48,12 Z" fill="#c8a0ff" opacity="0.4"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="modal-title">Chronicle</h2>
+          <p class="modal-subtitle">Quill's Notes</p>
+        </div>
+        <button class="modal-close" id="chronicle-close" type="button">&times;</button>
       </div>
-      <p class="footer-text">Seek and you shall find</p>
-    </footer>
+      <div class="modal-divider"></div>
+      <ul class="modal-list">
+        <li>
+          <a href="https://docs.google.com/document/d/1X744qliNCfo2RqDS72QMGopLeAzVAEZm9lEONzsPXFo/edit?usp=sharing" class="modal-link" target="_blank" rel="noopener">
+            <span class="session-number">S1</span>
+            <span class="session-title">Session One</span>
+            <span class="session-arrow">&#10230;</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/1qi0uqPZfLtHk5jX40-tbFlrcs5aaEkLEsHAdMp98rhM/edit?usp=drive_link" class="modal-link" target="_blank" rel="noopener">
+            <span class="session-number">S2</span>
+            <span class="session-title">Session Two</span>
+            <span class="session-arrow">&#10230;</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/1T3m0Jn3zqtb5o5ZZ73LJJ4GKGtcUVUKtkTwcvygUjrI/edit?usp=sharing" class="modal-link" target="_blank" rel="noopener">
+            <span class="session-number">S3</span>
+            <span class="session-title">Session Three</span>
+            <span class="session-arrow">&#10230;</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://docs.google.com/document/d/1o0BYFTNqhyIIJoZwhnmIDVNGQ2RYbMRCLxlarVEOivU/edit?usp=sharing" class="modal-link" target="_blank" rel="noopener">
+            <span class="session-number">S4</span>
+            <span class="session-title">Session Four</span>
+            <span class="session-arrow">&#10230;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <script src="app.js"></script>
